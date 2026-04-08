@@ -1,0 +1,27 @@
+Porting Arduino minimal for Black Pill STM32F411CEU6
+
+Stato al termine della sessione:
+
+- La build viene caricata correttamente sulla board.
+- Le modifiche UI sono visibili sul display, quindi lo sketch giusto e' quello in uso.
+- Il display funziona in landscape, ma i colori sono ancora errati e il testo appare sgranato/sfocato.
+
+Test effettuati:
+
+- MADCTL 0xC8: produce righe verticali, quindi da evitare.
+- MADCTL 0xE8: display stabile, ma rosso/blu appaiono scambiati o comunque alterati.
+- MADCTL 0xE0: display stabile, ma i colori restano anomali.
+- LV_COLOR_16_SWAP provato a 1 e a 0.
+- SPI TFT provata sia bassa che alta.
+- Inversione colori pannello provata e poi rimossa.
+
+Osservazioni:
+
+- Il pulsante "Press Me" e' stato ingrandito per verificare che la build aggiornata fosse davvero caricata.
+- Anche con il driver display riallineato al progetto ~/lvgl_arduino_clean/porting_arduino la resa resta sbagliata.
+- Questo suggerisce che il problema residuo e' nel mapping colori/rendering del pannello o in una differenza reale di hardware/cablaggio rispetto al progetto di riferimento.
+
+Prossimo passo consigliato:
+
+- Ripartire confrontando in modo sistematico questo port con ~/lvgl_arduino_clean/porting_arduino.
+- In particolare verificare differenze reali di pinout, board setup, libreria LVGL installata e driver display/touch usati a runtime.
